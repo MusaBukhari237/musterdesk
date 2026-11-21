@@ -1,0 +1,29 @@
+{
+  "name": "musterdesk",
+  "version": "1.0.0",
+  "description": "Offline-first daily attendance register for supervisors: mark a whole crew in seconds, keep a monthly muster roll, and export reports. Runs in the browser or as a Windows desktop app.",
+  "main": "electron/main.js",
+  "license": "MIT",
+  "author": "Musa Bukhari",
+  "homepage": "https://github.com/MusaBukhari237/musterdesk",
+  "scripts": {
+    "start": "electron .",
+    "serve": "node scripts/serve.mjs",
+    "test": "node --test test/*.test.js",
+    "dist": "electron-builder --win portable nsis --x64"
+  },
+  "keywords": ["attendance", "muster-roll", "attendance-register", "offline", "electron", "construction", "workforce", "supervisor", "timesheet"],
+  "devDependencies": {
+    "electron": "33.2.1",
+    "electron-builder": "25.1.8"
+  },
+  "build": {
+    "appId": "io.github.musabukhari237.musterdesk",
+    "productName": "Musterdesk",
+    "directories": { "output": "dist" },
+    "files": ["electron/**", "app/**", "package.json"],
+    "win": { "icon": "electron/icon.png", "artifactName": "${productName}-${version}-${arch}-${target}.${ext}" },
+    "portable": { "artifactName": "${productName}-${version}-portable.exe" },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true, "artifactName": "${productName}-Setup-${version}.exe" }
+  }
+}
