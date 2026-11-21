@@ -65,7 +65,7 @@ function Shell({ page, route, st }) {
       <div class="brand"><img src=${logoSrc()} alt="" /><div><div class="name">${st.settings.company}</div><div class="sub">${BRAND.appName}</div></div></div>
       <nav class="nav">${NAV.map(([k, l, i]) => html`<a href=${'#/' + k} class=${page === k ? 'active' : ''}>${Icon(i)} ${l}${k === 'register' && pending ? html`<span class="count">${pending}</span>` : ''}</a>`)}</nav>
       <span class="spacer"></span>
-      ${st.demo && html`<div class="demo-box" style=${{ margin: '0 4px 10px' }}><b>Sample data</b><span class="faint small">Clear it in Settings when you're ready to start.</span></div>`}
+      ${st.demo && html`<div class="demo-box" style=${{ margin: '0 4px 10px' }}><b>Sample data</b><span class="faint small">When you're ready, erase it in Settings → Backup &amp; data and start fresh.</span></div>`}
       <div class="row" style=${{ padding: '4px 6px' }}><span class="badge ok"><i class="dot"></i>Saved on this device</span></div>
       <div class="row"><button class="btn ghost sm" onClick=${toggleTheme}>${Icon('moon')} Theme</button></div>
     </aside>
