@@ -4,7 +4,11 @@
 
 [Try it in your browser](https://musabukhari237.github.io/musterdesk/?demo) · [Download for Windows](https://github.com/MusaBukhari237/musterdesk/releases/latest) · [Report an issue](https://github.com/MusaBukhari237/musterdesk/issues)
 
-[![Musterdesk daily register](docs/banner.png)](https://musabukhari237.github.io/musterdesk/?demo)
+### ▶ Watch the walkthrough (2:19)
+
+[![Musterdesk walkthrough: one-tap and keyboard marking, submit and lock, monthly muster roll, reports and offline use](docs/walkthrough.gif)](https://github.com/MusaBukhari237/musterdesk/releases/download/demo-video/musterdesk-walkthrough.mp4)
+
+*Click the preview to play the full narrated walkthrough (MP4, 1080p). It's also attached to the [demo-video release](https://github.com/MusaBukhari237/musterdesk/releases/tag/demo-video).*
 
 ## Who it's for
 
@@ -24,9 +28,17 @@ Site supervisors, foremen, shift leads, school and training-centre coordinators,
 - **Backup and restore**: one JSON file holds everything. Move between computers in seconds.
 - **Branding**: your logo and accent colour.
 
-| Muster roll | Reports | Teams |
-|---|---|---|
-| ![Muster roll](docs/muster.png) | ![Reports](docs/reports.png) | ![Teams](docs/teams.png) |
+## Screenshots
+
+Rugged and field-ready: high-contrast Barlow Condensed signage type, big 46 px tap targets, a hazard-striped header and an icon rail that turns into a bottom tab bar on tablets and phones.
+
+| | |
+|---|---|
+| ![Welcome (light)](docs/screenshots/welcome-light.webp)<br>**Welcome (light)** | ![Welcome (dark)](docs/screenshots/welcome-dark.webp)<br>**Welcome (dark)** |
+| ![Daily register](docs/screenshots/register-light.webp)<br>**Daily register** | ![Daily register in dark mode](docs/screenshots/register-dark.webp)<br>**Daily register in dark mode** |
+| ![Monthly muster roll](docs/screenshots/muster.webp)<br>**Monthly muster roll** | ![Reports](docs/screenshots/reports.webp)<br>**Reports** |
+| ![Workers](docs/screenshots/workers.webp)<br>**Workers** | ![Teams and sites](docs/screenshots/teams.webp)<br>**Teams and sites** |
+| ![Phone layout](docs/screenshots/phone.webp)<br>**Phone and tablet layout, with a bottom tab bar** | |
 
 ## Get started
 

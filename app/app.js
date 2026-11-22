@@ -54,24 +54,26 @@ function Onboarding() {
     </div></div></div>`;
 }
 
+const RAIL = { register: 'Register', muster: 'Muster roll', reports: 'Reports', workers: 'Workers', teams: 'Teams & sites', settings: 'Settings' };
 const NAV = [['register', 'Daily register', 'check'], ['muster', 'Muster roll', 'grid'], ['reports', 'Reports', 'chart'], ['workers', 'Workers', 'users'], ['teams', 'Teams & sites', 'building'], ['settings', 'Settings', 'settings']];
 function Shell({ page, route, st }) {
   const [open, setOpen] = useState(false);
   useEffect(() => setOpen(false), [route.path]);
   const Page = { register: Register, muster: Muster, reports: Reports, workers: Workers, teams: Teams, settings: Settings }[page] || Register;
   const pending = useMemo(() => { const t = S.today(); if (S.isOffDay(t)) return 0; return S.workersOf().filter((w) => !st.marks[t]?.[w.id]?.s).length; }, [st]);
-  return html`<div class="shell">
-    <aside class=${'sidebar' + (open ? ' open' : '')}>
-      <div class="brand"><img src=${logoSrc()} alt="" /><div><div class="name">${st.settings.company}</div><div class="sub">${BRAND.appName}</div></div></div>
-      <nav class="nav">${NAV.map(([k, l, i]) => html`<a href=${'#/' + k} class=${page === k ? 'active' : ''}>${Icon(i)} ${l}${k === 'register' && pending ? html`<span class="count">${pending}</span>` : ''}</a>`)}</nav>
-      <span class="spacer"></span>
-      ${st.demo && html`<div class="demo-box" style=${{ margin: '0 4px 10px' }}><b>Sample data</b><span class="faint small">When you're ready, erase it in Settings → Backup &amp; data and start fresh.</span></div>`}
-      <div class="row" style=${{ padding: '4px 6px' }}><span class="badge ok"><i class="dot"></i>Saved on this device</span></div>
-      <div class="row"><button class="btn ghost sm" onClick=${toggleTheme}>${Icon('moon')} Theme</button></div>
-    </aside>
-    ${open && html`<div class="scrim" onClick=${() => setOpen(false)}></div>`}
-    <main class="main"><div class="topbar"><button class="btn ghost icon menu-btn" onClick=${() => setOpen(true)}>${Icon('menu')}</button><h1>${(NAV.find((n) => n[0] === page) || NAV[0])[1]}</h1><span class="spacer"></span>
-      <span class="faint small nowrap">${new Date().toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })}</span></div>
+  const now = new Date();
+  return html`<div class="shell md-shell">
+    <nav class="rail" aria-label="Main">
+      <div class="rail-logo"><img src=${logoSrc()} alt=${BRAND.appName} title=${BRAND.appName} /></div>
+      ${NAV.map(([k, l, i]) => html`<a href=${'#/' + k} class=${page === k ? 'active' : ''}>${Icon(i)}<span>${RAIL[k] || l}</span>${k === 'register' && pending ? html`<span class="count">${pending}</span>` : ''}</a>`)}
+      <div class="rail-foot">
+        <div class="saved" title="Everything is saved on this device. No internet needed.">${Icon('shield')}Saved offline</div>
+        <button class="rail-btn" onClick=${toggleTheme} title="Switch light / dark">${Icon('moon')}<span>Theme</span></button>
+      </div>
+    </nav>
+    <main class="main"><div class="topbar"><div><div class="co">${st.settings.company}</div><h1>${(NAV.find((n) => n[0] === page) || NAV[0])[1]}</h1></div><span class="spacer"></span>
+      ${st.demo && html`<a class="sample-flag" href="#/settings" title="When you're ready, erase it in Settings → Backup & data and start fresh.">${Icon('zap')} Sample data</a>`}
+      <span class="date-block"><span class="d">${now.getDate()}</span><span class="m">${now.toLocaleDateString([], { weekday: 'long' })}<br />${now.toLocaleDateString([], { month: 'short', year: 'numeric' })}</span></span></div>
       <div class="content"><${Page} st=${st} route=${route} /></div></main></div>`;
 }
 
@@ -288,7 +290,7 @@ function TeamForm({ t, onClose }) {
 }
 
 /* =================== Settings =================== */
-const ACCENTS = ['#0d9488', '#2563eb', '#16a34a', '#7c3aed', '#ea580c', '#db2777', '#111827', '#bda873'];
+const ACCENTS = ['#0b8a7c', '#1f5fd1', '#13853f', '#7340d6', '#d9480f', '#c2185b', '#111827', '#ffc400'];
 function Settings({ st }) {
   const s = st.settings;
   const [hol, setHol] = useState({ date: S.today(), name: '' });
